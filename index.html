@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronograma Tático - Executiva & V4 Company</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: '#0F172A',
+                            secondary: '#1E293B',
+                            accent: '#3B82F6'
+                        }
+                    },
+                    backgroundImage: {
+                        'brand-gradient': 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #020617 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #F8FAFC;
+        }
+
+        .card-tech {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            transition: all 0.3s ease;
+        }
+        
+        .card-tech:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800 flex flex-col min-h-screen">
+
+    <header class="bg-brand-gradient text-white pt-16 pb-28 px-6 relative overflow-hidden border-b-4 border-brand-accent">
+        <!-- Elementos decorativos -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white opacity-5 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-brand-accent opacity-10 blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center">
+            
+            <div class="bg-white/5 backdrop-blur-md p-4 rounded-xl mb-8 border border-white/10 shadow-xl">
+                <img src="https://www.executiva.com.br/wp-content/uploads/2026/01/logo-executiva.svg" 
+                     alt="Executiva Logo" 
+                     class="h-12 object-contain"
+                     onerror="this.onerror=null; this.src='https://placehold.co/250x60/1E293B/FFFFFF?text=EXECUTIVA'">
+            </div>
+
+            <span class="inline-flex items-center gap-2 text-brand-accent font-bold tracking-widest uppercase text-xs px-3 py-1 bg-brand-accent/10 rounded-full mb-6 border border-brand-accent/20">
+                <i class="ph-fill ph-rocket-launch"></i> Roadmap de Implementação e Onboarding
+            </span>
+            
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300">
+                Cronograma Tático <br/> RD Station CRM
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
+                Alinhamento pós-Kickoff contendo prazos, responsáveis e entregáveis para a transição segura do ActiveCampaign para o RD Station.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-6 -mt-16 relative z-20 flex-grow w-full">
+        
+        <section id="matriz-raci" class="mb-16">
+            <div class="bg-white rounded-2xl p-8 border-t-0 card-tech shadow-xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Matriz de Responsabilidades (RACI)</h2>
+                    <div class="h-1 w-20 bg-brand-accent mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 hover:border-brand-accent/50 transition-colors">
+                        <div class="flex items-center gap-4 mb-6 pb-4 border-b border-slate-200">
+                            <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
+                                <i class="ph-bold ph-code text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-800 leading-tight">Equipe Executora</h3>
+                                <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">V4 Company</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
+                                <div class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-blue-500 text-lg"></i> Hebert Gustavo</div><span class="text-[10px] bg-blue-50 text-blue-600 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Implementação RD</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
+                                <div class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-blue-500 text-lg"></i> Rodolfo Barbosa</div><span class="text-[10px] bg-blue-50 text-blue-600 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Coord. de Operação</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
+                                <div class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-blue-500 text-lg"></i> Leonardo Mendes</div><span class="text-[10px] bg-blue-50 text-blue-600 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Key Account / Growth</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 hover:border-brand-accent/50 transition-colors">
+                        <div class="flex items-center gap-4 mb-6 pb-4 border-b border-slate-200">
+                            <div class="w-12 h-12 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 shadow-sm">
+                                <i class="ph-bold ph-users text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-800 leading-tight">Comitê de Validação</h3>
+                                <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest">Executiva</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
+                                <div class="flex items-center gap-3"><i class="ph-fill ph-star text-amber-500 text-lg"></i> Mari Costa</div><span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Sponsor</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
+                                <div class="flex items-center gap-3"><i class="ph-fill ph-shield text-indigo-400 text-lg"></i> Robson</div><span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">TI</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
+                                <div class="flex items-center gap-3"><i class="ph-fill ph-megaphone text-indigo-400 text-lg"></i> Silvia / Agência A Priori</div><span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Marketing</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
+                                <div class="flex items-center gap-3"><i class="ph-fill ph-crosshair text-indigo-400 text-lg"></i> Claudio e Rafael Costa</div><span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Comercial</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
+                                <div class="flex items-center gap-3"><i class="ph-fill ph-chart-line-up text-indigo-400 text-lg"></i> Juliana Almeida</div><span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Farmer / Expansão</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
+                                <div class="flex items-center gap-3"><i class="ph-fill ph-headset text-indigo-400 text-lg"></i> Yohanna Sofka</div><span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Pré-Vendas / SDR</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cronograma-grid" class="mb-20">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">Cronograma de Execução</h2>
+                    <p class="text-slate-500 mt-1">Clique nas tarefas para marcá-las como concluídas.</p>
+                </div>
+                <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm">
+                    <i class="ph-fill ph-clock text-brand-accent text-xl"></i>
+                    <span class="text-sm font-semibold text-slate-700">Duração Total: 8 Semanas</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+                
+                <!-- FASE 1 -->
+                <div class="bg-gray-50 rounded-xl shadow border-t-4 border-slate-300 hover:border-brand-accent card-tech flex flex-col h-full overflow-hidden">
+                    <div class="bg-white p-5 border-b border-slate-100">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-100 px-2 py-1 rounded">Semanas 1 e 2</span>
+                        <h3 class="text-lg font-bold text-slate-800 mt-3 leading-tight">Fase 1<br/>Setup, Segurança e Canais</h3>
+                    </div>
+                    <div class="p-3 flex-grow">
+                        <ul class="space-y-1">
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-shield-check text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Kick-off e auditoria de acessos.</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Robson (TI)</span></div>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-map-trifold text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Mapeamento da jornada (lead ao pós-venda).</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-users"></i> Silvia (MKT) / Ag. A Priori</span></div>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-funnel text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Desenho dos Funis (Prospecção, Vendas e Sucesso).</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-users"></i> Rodolfo (V4) / Karina</span></div>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-arrows-left-right text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Definição de Gatilhos de Passagem.</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-users"></i> Hebert / Rodolfo (V4)</span></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FASE 2 -->
+                <div class="bg-gray-50 rounded-xl shadow border-t-4 border-slate-300 hover:border-brand-accent card-tech flex flex-col h-full overflow-hidden">
+                    <div class="bg-white p-5 border-b border-slate-100">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-100 px-2 py-1 rounded">Semanas 3 e 4</span>
+                        <h3 class="text-lg font-bold text-slate-800 mt-3 leading-tight">Fase 2<br/>Migração e Processos</h3>
+                    </div>
+                    <div class="p-3 flex-grow">
+                        <ul class="space-y-1">
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-broom text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Exportação e limpeza do ActiveCampaign.</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-users"></i> Equipe V4</span></div>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-database text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Importação e higienização no RD Marketing.</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4)</span></div>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-chat-circle-text text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Implementação RD Conversas (API).</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4)</span></div>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-globe-hemisphere-west text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Setup de domínios, segurança, LPs e 25 usuários.</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-users"></i> Robson (TI) / Silvia (MKT)</span></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FASE 3 -->
+                <div class="bg-gray-50 rounded-xl shadow border-t-4 border-slate-300 hover:border-brand-accent card-tech flex flex-col h-full overflow-hidden">
+                    <div class="bg-white p-5 border-b border-slate-100">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-100 px-2 py-1 rounded">Semanas 5 e 6</span>
+                        <h3 class="text-lg font-bold text-slate-800 mt-3 leading-tight">Fase 3<br/>Centralização e Homologação</h3>
+                    </div>
+                    <div class="p-3 flex-grow">
+                        <ul class="space-y-1">
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-target text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Configuração do Lead Scoring.</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4)</span></div>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-robot text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Desenho do Chatbot de triagem no WhatsApp.</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4)</span></div>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-lightning text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Automações e Regras de distribuição de leads.</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-users"></i> Hebert / Karina</span></div>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-chart-bar text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Dashboards iniciais de metas.</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-users"></i> Hebert (V4) / Karina</span></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FASE 4 -->
+                <div class="bg-gray-50 rounded-xl shadow border-t-4 border-slate-300 hover:border-brand-accent card-tech flex flex-col h-full overflow-hidden">
+                    <div class="bg-white p-5 border-b border-slate-100">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-100 px-2 py-1 rounded">Semanas 7 e 8</span>
+                        <h3 class="text-lg font-bold text-slate-800 mt-3 leading-tight">Fase 4<br/>Go-Live e Capacitação</h3>
+                    </div>
+                    <div class="p-3 flex-grow">
+                        <ul class="space-y-1">
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-chalkboard-teacher text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Treinamento prático: Hunters e Farmers.</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Rodolfo (V4)</span></div>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-headset text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Treinamento CS e Atendimento (RD Conversas).</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Rodolfo (V4)</span></div>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-presentation-chart text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Treinamento da Liderança (Leitura BI).</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-users"></i> Rodolfo (V4) / Karina</span></div>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <i class="task-icon ph-fill ph-rocket-launch text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                <div class="flex flex-col">
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300">Operação Assistida de Go-Live.</span>
+                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-users"></i> Equipe V4 / Mari Costa</span></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="to-do-semana-1" class="mb-24 max-w-5xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-1 border border-slate-200 overflow-hidden">
+                <div class="bg-slate-50 rounded-[22px] p-8 md:p-10 border border-white">
+                    
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-slate-200 pb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-blue-100 p-3 rounded-xl text-blue-600 shadow-inner">
+                                <i class="ph-fill ph-list-checks text-3xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">TO-DO: Primeira Semana</h2>
+                                <p class="text-slate-500 mt-1 font-medium">Ações imediatas e focadas na transição do ActiveCampaign.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        
+                        <!-- Concluído -->
+                        <div class="flex items-center gap-4 p-5 rounded-2xl bg-emerald-50 border border-emerald-200 transition-all hover:shadow-md">
+                            <div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-sm">
+                                <i class="ph-bold ph-check text-xl"></i>
+                            </div>
+                            <div class="flex-grow">
+                                <span class="text-emerald-900 font-semibold text-base md:text-lg block">Liberação de acesso ao ActiveCampaign pela TI (Target/Robson).</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Pendente 1 -->
+                        <div class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-slate-300 hover:shadow-md">
+                            <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center shrink-0 border border-slate-200">
+                                <i class="ph-bold ph-circle-dashed text-xl"></i>
+                            </div>
+                            <div class="flex-grow">
+                                <span class="text-slate-800 font-semibold text-base md:text-lg block">Auditoria diagnóstica da base de dados e mapeamento de tags legadas.</span>
+                            </div>
+                        </div>
+
+                        <!-- Pendente 2 -->
+                        <div class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-slate-300 hover:shadow-md">
+                            <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center shrink-0 border border-slate-200">
+                                <i class="ph-bold ph-circle-dashed text-xl"></i>
+                            </div>
+                            <div class="flex-grow">
+                                <span class="text-slate-800 font-semibold text-base md:text-lg block">Reunião de Governança de TI com Robson: Definição de acessos ao RD Station respeitando os critérios de segurança corporativa e certificação TISAX.</span>
+                            </div>
+                        </div>
+
+                        <!-- Pendente 3 -->
+                        <div class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-slate-300 hover:shadow-md">
+                            <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center shrink-0 border border-slate-200">
+                                <i class="ph-bold ph-circle-dashed text-xl"></i>
+                            </div>
+                            <div class="flex-grow">
+                                <span class="text-slate-800 font-semibold text-base md:text-lg block">Planilha Transitória de Leads: Setup do controle de MQLs e treinamento da Yohanna (SDR) até o Go-Live oficial do RD Station.</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="mt-10 flex justify-end">
+                        <button onclick="window.print()" class="w-full md:w-auto bg-brand-primary hover:bg-slate-800 text-white font-bold py-3 px-6 rounded-xl shadow transition-all flex items-center justify-center gap-2">
+                            <i class="ph ph-printer text-xl"></i> Exportar PDF
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#0B1120] text-slate-400 py-16 mt-auto border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-10">
+            <img src="https://www.executiva.com.br/wp-content/uploads/2026/01/logo-executiva.svg" 
+                 alt="Executiva" 
+                 class="h-10 grayscale opacity-60 hover:opacity-100 transition-opacity"
+                 onerror="this.onerror=null; this.src='https://placehold.co/150x40/0B1120/FFFFFF?text=EXECUTIVA'">
+            
+            <div class="w-24 h-px md:w-px md:h-12 bg-slate-700 rounded-full"></div>
+            
+            <div class="flex items-center gap-3">
+                <span class="text-xs font-semibold tracking-[0.2em] uppercase text-slate-500">Powered by</span>
+                <h4 class="text-white text-2xl font-bold tracking-tight">
+                    V4 Company <span class="text-brand-accent">.</span>
+                </h4>
+            </div>
+        </div>
+        <div class="text-center text-xs text-slate-600 mt-10 font-medium tracking-wide">
+            Documento Tático e Confidencial &copy; 2026.
+        </div>
+    </footer>
+
+    <script>
+        function toggleTask(element) {
+            const textSpan = element.querySelector('.task-text');
+            const icon = element.querySelector('.task-icon');
+
+            if (textSpan.classList.contains('line-through')) {
+                // Desmarcar
+                textSpan.classList.remove('line-through', 'text-slate-400');
+                textSpan.classList.add('text-slate-600');
+                element.classList.remove('bg-emerald-50/50', 'opacity-70');
+                
+                const originalIcon = icon.getAttribute('data-original-icon');
+                icon.className = `task-icon ph-fill ${originalIcon} text-brand-accent text-lg mt-0.5 shrink-0 transition-colors`;
+            } else {
+                // Marcar
+                textSpan.classList.remove('text-slate-600');
+                textSpan.classList.add('line-through', 'text-slate-400');
+                element.classList.add('bg-emerald-50/50', 'opacity-70');
+                
+                if (!icon.hasAttribute('data-original-icon')) {
+                    const phClass = Array.from(icon.classList).find(c => c.startsWith('ph-') && c !== 'ph-fill');
+                    icon.setAttribute('data-original-icon', phClass);
+                }
+                
+                icon.className = `task-icon ph-fill ph-check-circle text-emerald-500 text-lg mt-0.5 shrink-0 transition-colors`;
+            }
+        }
+    </script>
+</body>
+</html>
