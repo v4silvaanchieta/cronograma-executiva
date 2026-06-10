@@ -79,7 +79,7 @@
     <main class="max-w-7xl mx-auto px-4 md:px-6 -mt-16 relative z-20 flex-grow w-full">
         
         <!-- MATRIZ RACI -->
-        <section id="matriz-raci" class="mb-16">
+        <section id="matriz-raci" class="mb-10">
             <div class="bg-white rounded-2xl p-8 border-t-0 card-tech shadow-xl">
                 <div class="text-center mb-10">
                     <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Matriz de Responsabilidades (RACI)</h2>
@@ -168,9 +168,61 @@
             </div>
         </section>
 
+        <!-- VISÃO MACRO: JORNADA INTEGRADA (FEEDBACK SILVIA/MARKETING) -->
+        <section id="visao-macro" class="mb-16">
+            <div class="bg-white rounded-2xl p-6 md:p-8 card-tech shadow-lg border border-slate-100">
+                <div class="text-center mb-8">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-brand-accent bg-blue-50 px-2 py-1 rounded mb-2 inline-block">Visão Estratégica</span>
+                    <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Jornada Integrada do Cliente</h2>
+                    <p class="text-slate-500 mt-1 text-sm">Integração do ecossistema de ponta a ponta: do Marketing à Retenção (CS).</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+                    <!-- Seta conectora visual (Aparece apenas no desktop) -->
+                    <div class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-slate-200 -z-10 transform -translate-y-1/2"></div>
+                    
+                    <!-- Topo de Funil -->
+                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl text-center relative z-10 hover:border-blue-400 transition-colors">
+                        <div class="w-10 h-10 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-3">
+                            <i class="ph-bold ph-magnet text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">Captação Omnichannel</h4>
+                        <p class="text-xs text-slate-500 mt-1">Topo de Funil: Landing Pages, Redes, Campanhas.</p>
+                    </div>
+
+                    <!-- Meio de Funil -->
+                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl text-center relative z-10 hover:border-indigo-400 transition-colors">
+                        <div class="w-10 h-10 mx-auto bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-3">
+                            <i class="ph-bold ph-crosshair text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">RD Station & Rastreabilidade</h4>
+                        <p class="text-xs text-slate-500 mt-1">Meio de Funil: Qualificação (MQL), Automação e Origem.</p>
+                    </div>
+
+                    <!-- Fundo de Funil -->
+                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl text-center relative z-10 hover:border-emerald-400 transition-colors">
+                        <div class="w-10 h-10 mx-auto bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-3">
+                            <i class="ph-bold ph-handshake text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">Vendas (Hunters)</h4>
+                        <p class="text-xs text-slate-500 mt-1">Fundo de Funil: Pipelines Comerciais, SLAs e SQL.</p>
+                    </div>
+
+                    <!-- Pós Venda / CS -->
+                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl text-center relative z-10 hover:border-amber-400 transition-colors">
+                        <div class="w-10 h-10 mx-auto bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-3">
+                            <i class="ph-bold ph-chart-line-up text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">Customer Success</h4>
+                        <p class="text-xs text-slate-500 mt-1">Pós-venda: Retenção, Farmers e Oportunidades Upsell.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CRONOGRAMA EM GRID DE 4 COLUNAS -->
-        <section id="cronograma-grid" class="mb-20">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <section id="cronograma-grid" class="mb-16">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
                 <div>
                     <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">Cronograma de Execução</h2>
                     <p class="text-slate-500 mt-1">Clique nas tarefas para marcá-las como concluídas. Baseado no Kick-off do dia 08/06.</p>
@@ -192,7 +244,6 @@
                     </div>
                     <div class="p-3 flex-grow">
                         <ul class="space-y-1">
-                            <!-- Tarefa Previamente Concluída -->
                             <li class="flex items-start gap-3 cursor-pointer bg-emerald-50/50 opacity-70 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
                                 <i class="task-icon ph-fill ph-check-circle text-emerald-500 text-lg mt-0.5 shrink-0 transition-colors" data-original-icon="ph-users-three"></i>
                                 <div class="flex flex-col">
@@ -210,14 +261,14 @@
                             <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
                                 <i class="task-icon ph-fill ph-map-trifold text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
                                 <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[16/06 a 18/06]</span> Mapeamento da jornada do cliente (Lead ao Pós-venda).</span>
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[16/06 a 18/06]</span> Mapeamento da jornada do cliente (Topo, Meio e Fundo de Funil).</span>
                                     <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Silvia (MKT)</span></div>
                                 </div>
                             </li>
                             <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
                                 <i class="task-icon ph-fill ph-funnel text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
                                 <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[19/06 a 21/06]</span> Desenho estratégico dos funis e Gatilhos de Passagem (MQL para SQL).</span>
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[19/06 a 21/06]</span> Desenho estratégico dos funis completos e parametrização de rastreabilidade (Origem).</span>
                                     <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Rodolfo (V4) / Karina</span></div>
                                 </div>
                             </li>
@@ -276,7 +327,7 @@
                             <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
                                 <i class="task-icon ph-fill ph-target text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
                                 <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[06/07 a 09/07]</span> Configuração do Lead Scoring focado no ICP e automações de nutrição.</span>
+                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[06/07 a 09/07]</span> Configuração do Lead Scoring focado no ICP, garantindo rastreabilidade da origem.</span>
                                     <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Silvia (MKT)</span></div>
                                 </div>
                             </li>
@@ -306,13 +357,13 @@
                 </div>
 
                 <!-- FASE 4 -->
-                <div class="bg-gray-50 rounded-xl shadow border-t-4 border-slate-300 hover:border-brand-accent card-tech flex flex-col h-full overflow-hidden">
+                <div class="bg-gray-50 rounded-xl shadow border-t-4 border-slate-300 hover:border-brand-accent card-tech flex flex-col h-full overflow-hidden relative">
                     <div class="bg-white p-5 border-b border-slate-100">
                         <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-100 px-2 py-1 rounded">20/07 a 02/08</span>
-                        <h3 class="text-lg font-bold text-slate-800 mt-3 leading-tight">Fase 4<br/>Go-Live e Capacitação</h3>
+                        <h3 class="text-lg font-bold text-slate-800 mt-3 leading-tight">Fase 4<br/>Treinamento e Go-Live</h3>
                     </div>
-                    <div class="p-3 flex-grow">
-                        <ul class="space-y-1">
+                    <div class="p-3 flex-grow flex flex-col">
+                        <ul class="space-y-1 mb-4">
                             <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
                                 <i class="task-icon ph-fill ph-chalkboard-teacher text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
                                 <div class="flex flex-col">
@@ -334,17 +385,67 @@
                                     <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Equipe V4</span></div>
                                 </div>
                             </li>
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-power text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[31/07 a 02/08]</span> Virada de chave definitiva e desligamento oficial do ActiveCampaign.</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Mari Costa</span></div>
-                                </div>
-                            </li>
                         </ul>
+                        
+                        <!-- DIA D BADGE -->
+                        <div class="mt-auto border-t-2 border-dashed border-red-200 pt-3">
+                            <div class="flex items-center gap-3 cursor-pointer hover:bg-red-50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
+                                <div class="flex flex-col w-full relative overflow-hidden rounded-xl border border-red-300 bg-red-50/50">
+                                    <div class="bg-red-500 text-white text-center py-1.5 font-black tracking-widest flex items-center justify-center gap-2">
+                                        <i class="ph-fill ph-warning-circle animate-pulse"></i> DIA D: 31/07
+                                    </div>
+                                    <div class="p-3 flex items-start gap-3">
+                                        <i class="task-icon ph-fill ph-power text-red-500 text-lg mt-0.5 shrink-0 transition-colors"></i>
+                                        <div class="flex flex-col">
+                                            <span class="task-text text-sm text-slate-800 font-bold leading-snug transition-all duration-300">GO-LIVE DEFINITIVO <br/><span class="font-medium text-xs text-slate-600">Desligamento oficial do ActiveCampaign.</span></span>
+                                            <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-red-100 text-red-700 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Mari Costa</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- GOVERNANÇA E RITUAIS DE ACOMPANHAMENTO (FEEDBACK MARI) -->
+        <section id="rituais" class="mb-20">
+            <div class="bg-white rounded-2xl p-6 md:p-8 card-tech shadow-lg border border-slate-100">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Governança e Rituais de Acompanhamento</h2>
+                    <p class="text-slate-500 mt-1 text-sm">Estrutura de comunicação para garantir clareza tática e visibilidade do projeto.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Ritual 1: Atendimento Diário -->
+                    <div class="bg-slate-50 border border-slate-200 p-6 rounded-xl relative hover:border-brand-accent/50 transition-colors">
+                        <div class="absolute top-0 right-0 -mr-3 -mt-3 w-10 h-10 bg-brand-accent text-white rounded-full flex items-center justify-center shadow-lg">
+                            <i class="ph-bold ph-chats-teardrop text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Atendimento Diário</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Atualização diária no grupo com o que está sendo executado e novidades do projeto.</p>
+                        <div class="flex items-center gap-2 mt-auto">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-200 px-2 py-1 rounded"><i class="ph-fill ph-clock"></i> Frequência: Diária</span>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-blue-600 bg-blue-100 px-2 py-1 rounded"><i class="ph-fill ph-user"></i> Hebert (Hands-on)</span>
+                        </div>
+                    </div>
+
+                    <!-- Ritual 2: Check-ins Semanais -->
+                    <div class="bg-slate-50 border border-slate-200 p-6 rounded-xl relative hover:border-brand-accent/50 transition-colors">
+                        <div class="absolute top-0 right-0 -mr-3 -mt-3 w-10 h-10 bg-indigo-500 text-white rounded-full flex items-center justify-center shadow-lg">
+                            <i class="ph-bold ph-file-pdf text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Check-ins Semanais</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Atualização estruturada do que foi feito do cronograma na semana anterior (acompanhado de documento em PDF).</p>
+                        <div class="flex items-center gap-2 mt-auto">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-200 px-2 py-1 rounded"><i class="ph-fill ph-clock"></i> Frequência: Semanal</span>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-indigo-600 bg-indigo-100 px-2 py-1 rounded"><i class="ph-fill ph-users"></i> Comitê V4</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -464,17 +565,33 @@
             if (textSpan.classList.contains('line-through')) {
                 // Desmarcar tarefa
                 textSpan.classList.remove('line-through', 'text-slate-400');
+                textSpan.classList.remove('text-slate-500'); // Para o Dia D
                 textSpan.classList.add('text-slate-600');
-                element.classList.remove('bg-emerald-50/50', 'opacity-70');
+                element.classList.remove('bg-emerald-50/50', 'opacity-70', 'bg-red-50/30'); // bg-red-50/30 para o Dia D
                 
-                // Restaurar ícone original guardado ou inferido
+                // Restaurar ícone original guardado
                 const originalIcon = icon.getAttribute('data-original-icon');
-                icon.className = `task-icon ph-fill ${originalIcon} text-brand-accent text-lg mt-0.5 shrink-0 transition-colors`;
+                
+                // Check if it's the Dia D task to restore red color
+                if (originalIcon === 'ph-power') {
+                    icon.className = `task-icon ph-fill ${originalIcon} text-red-500 text-lg mt-0.5 shrink-0 transition-colors`;
+                } else {
+                    icon.className = `task-icon ph-fill ${originalIcon} text-brand-accent text-lg mt-0.5 shrink-0 transition-colors`;
+                }
             } else {
                 // Marcar tarefa como concluída
                 textSpan.classList.remove('text-slate-600');
-                textSpan.classList.add('line-through', 'text-slate-400');
-                element.classList.add('bg-emerald-50/50', 'opacity-70');
+                textSpan.classList.remove('text-slate-800'); // Para o Dia D
+                textSpan.classList.add('line-through');
+                
+                // If it's Dia D, use a slightly different text color
+                if (icon.classList.contains('ph-power')) {
+                    textSpan.classList.add('text-slate-500');
+                    element.classList.add('bg-red-50/30', 'opacity-70');
+                } else {
+                    textSpan.classList.add('text-slate-400');
+                    element.classList.add('bg-emerald-50/50', 'opacity-70');
+                }
                 
                 // Guardar ícone original para restauração posterior
                 if (!icon.hasAttribute('data-original-icon')) {
