@@ -3,606 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cronograma Tático - Executiva & V4 Company</title>
-    
-    <!-- Tailwind CSS -->
+    <title>Cronograma de Migração ActiveCampaign → RD Station · Executiva & V4 Company</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
+
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            primary: '#0F172A',
-                            secondary: '#1E293B',
-                            accent: '#3B82F6'
-                        }
-                    },
-                    backgroundImage: {
-                        'brand-gradient': 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #020617 100%)',
-                    }
-                }
-            }
+            theme: { extend: {
+                colors: { brand: { primary: '#0F172A', secondary: '#1E293B', accent: '#3B82F6' } },
+                backgroundImage: { 'brand-gradient': 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #020617 100%)' }
+            } }
         }
     </script>
-
     <style>
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: #F8FAFC;
-        }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #F8FAFC; }
+        .card-tech { box-shadow: 0 10px 25px -5px rgba(0,0,0,.05), 0 8px 10px -6px rgba(0,0,0,.01); transition: all .3s ease; }
+        .card-tech:hover { box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04); transform: translateY(-4px); }
 
-        .card-tech {
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-            transition: all 0.3s ease;
-        }
-        
-        .card-tech:hover {
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            transform: translateY(-4px);
-        }
+        /* Gantt legível: cada linha é um grid próprio [rótulo | trilha de 10 semanas] */
+        .gantt-wrap { min-width: 760px; }
+        .g-row { display:grid; grid-template-columns: 230px 1fr; align-items:center; min-height:48px; border-bottom:1px solid #F1F5F9; }
+        .g-head { min-height:42px; border-bottom:2px solid #E2E8F0; }
+        .g-lbl { font-size:12.5px; font-weight:700; color:#334155; padding-right:14px; line-height:1.25; }
+        .g-lbl small { display:block; font-size:10px; font-weight:600; color:#94A3B8; }
+        .g-track { display:grid; grid-template-columns: repeat(11, 1fr); align-items:center; column-gap:4px; }
+        .done-ribbon { font-size:9px; font-weight:800; letter-spacing:.05em; color:#047857; background:#D1FAE5; border:1px solid #A7F3D0; padding:2px 7px; border-radius:9999px; }
+        .wk { text-align:center; font-size:11px; font-weight:800; color:#475569; }
+        .wk span { display:block; font-size:8.5px; font-weight:600; color:#94A3B8; margin-top:1px; }
+        .bar { height:28px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:10.5px; font-weight:800; color:#fff; box-shadow:0 2px 5px rgba(0,0,0,.12); }
+        .mk { display:inline-flex; align-items:center; gap:4px; font-size:10px; font-weight:800; padding:3px 8px; border-radius:9999px; }
     </style>
 </head>
 <body class="antialiased text-slate-800 flex flex-col min-h-screen">
 
-    <!-- HEADER CORPORATIVO -->
+    <!-- HEADER -->
     <header class="bg-brand-gradient text-white pt-16 pb-28 px-6 relative overflow-hidden border-b-4 border-brand-accent">
         <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white opacity-5 blur-3xl"></div>
         <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-brand-accent opacity-10 blur-3xl"></div>
-        
         <div class="max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center">
-            
             <div class="bg-white/5 backdrop-blur-md p-4 rounded-xl mb-8 border border-white/10 shadow-xl">
-                <img src="https://www.executiva.com.br/wp-content/uploads/2026/01/logo-executiva.svg" 
-                     alt="Executiva Logo" 
-                     class="h-12 object-contain"
+                <img src="https://www.executiva.com.br/wp-content/uploads/2026/01/logo-executiva.svg" alt="Executiva" class="h-12 object-contain"
                      onerror="this.onerror=null; this.src='https://placehold.co/250x60/1E293B/FFFFFF?text=EXECUTIVA'">
             </div>
-
             <span class="inline-flex items-center gap-2 text-brand-accent font-bold tracking-widest uppercase text-xs px-3 py-1 bg-brand-accent/10 rounded-full mb-6 border border-brand-accent/20">
-                <i class="ph-fill ph-rocket-launch"></i> Roadmap de Implementação e Onboarding
+                <i class="ph-fill ph-calendar-check"></i> Cronograma de Execução · Migração de Plataforma
             </span>
-            
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300">
-                Cronograma Tático <br/> RD Station CRM
+                Migração ActiveCampaign <br/> → RD Station
             </h1>
-            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
-                Alinhamento com datas projetadas para a transição segura e higienização da base legada rumo ao novo ecossistema RD.
+            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
+                Plano de execução de ponta a ponta — da conclusão da auditoria à operação 100% no RD Station, com o go-live coincidindo com o último dia do ActiveCampaign.
             </p>
+            <p class="text-xs text-slate-500 mt-6 tracking-wide uppercase">Fases iniciais concluídas · 10 semanas restantes · Go-live 02/10/2026 · Escopo: RD Marketing + CRM</p>
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
     <main class="max-w-7xl mx-auto px-4 md:px-6 -mt-16 relative z-20 flex-grow w-full">
-        
-        <!-- MATRIZ RACI -->
-        <section id="matriz-raci" class="mb-10">
-            <div class="bg-white rounded-2xl p-8 border-t-0 card-tech shadow-xl">
-                <div class="text-center mb-10">
-                    <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Matriz de Responsabilidades (RACI)</h2>
-                    <div class="h-1 w-20 bg-brand-accent mx-auto mt-4 rounded-full"></div>
+
+        <!-- PREMISSAS -->
+        <section class="mb-14">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white rounded-2xl p-5 card-tech border-t-4 border-brand-accent">
+                    <i class="ph-bold ph-flag-checkered text-brand-accent text-2xl"></i>
+                    <h3 class="font-bold text-sm mt-2 mb-1">Go-live = fim do AC</h3>
+                    <p class="text-xs text-slate-500">A virada de chave (02/10) é o último dia útil do ActiveCampaign. Zero sobreposição de custo.</p>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-                    <!-- Coluna 1: Equipe Executora -->
-                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 hover:border-brand-accent/50 transition-colors">
-                        <div class="flex items-center gap-4 mb-6 pb-4 border-b border-slate-200">
-                            <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
-                                <i class="ph-bold ph-code text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-slate-800 leading-tight">Equipe Executora</h3>
-                                <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">V4 Company</span>
-                            </div>
-                        </div>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
-                                <div class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-blue-500 text-lg"></i> Hebert Gustavo</div>
-                                <span class="text-[10px] bg-blue-50 text-blue-600 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Implementação RD</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
-                                <div class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-blue-500 text-lg"></i> Rodolfo Barbosa Freitas</div>
-                                <span class="text-[10px] bg-blue-50 text-blue-600 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Coord. Operação</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
-                                <div class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-blue-500 text-lg"></i> Leonardo Mendes</div>
-                                <span class="text-[10px] bg-blue-50 text-blue-600 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Key Account / Growth</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Coluna 2: Comitê de Validação -->
-                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 hover:border-brand-accent/50 transition-colors">
-                        <div class="flex items-center gap-4 mb-6 pb-4 border-b border-slate-200">
-                            <div class="w-12 h-12 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 shadow-sm">
-                                <i class="ph-bold ph-users text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-slate-800 leading-tight">Comitê de Validação</h3>
-                                <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest">Executiva</span>
-                            </div>
-                        </div>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
-                                <div class="flex items-center gap-3"><i class="ph-fill ph-star text-amber-500 text-lg"></i> Mari Costa</div>
-                                <span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">CEO / Stakeholder</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
-                                <div class="flex items-center gap-3"><i class="ph-fill ph-briefcase text-indigo-400 text-lg"></i> Karina</div>
-                                <span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Diretora Comercial</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
-                                <div class="flex items-center gap-3"><i class="ph-fill ph-megaphone text-indigo-400 text-lg"></i> Silvia Lieta</div>
-                                <span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Marketing</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
-                                <div class="flex items-center gap-3"><i class="ph-fill ph-headset text-indigo-400 text-lg"></i> Yohanna Sofka</div>
-                                <span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Pré-vendas / SDR</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
-                                <div class="flex items-center gap-3"><i class="ph-fill ph-crosshair text-indigo-400 text-lg"></i> Claudio e Rafael Costa</div>
-                                <span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Hunters</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
-                                <div class="flex items-center gap-3"><i class="ph-fill ph-chart-line-up text-indigo-400 text-lg"></i> Juliana Almeida</div>
-                                <span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Farmer / Expansão</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
-                                <div class="flex items-center gap-3"><i class="ph-fill ph-shield text-indigo-400 text-lg"></i> Robson Schmidt</div>
-                                <span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">TI</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
-                                <div class="flex items-center gap-3"><i class="ph-fill ph-hard-drives text-indigo-400 text-lg"></i> Taghert Brunno Toledo</div>
-                                <span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Infra / TI</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700 font-medium bg-white p-2 rounded border border-slate-100 justify-between">
-                                <div class="flex items-center gap-3"><i class="ph-fill ph-users-three text-indigo-400 text-lg"></i> Gleice</div>
-                                <span class="text-[10px] bg-slate-100 text-slate-500 px-2 py-1 rounded uppercase font-bold tracking-wider whitespace-nowrap">Comercial</span>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="bg-white rounded-2xl p-5 card-tech border-t-4 border-red-400">
+                    <i class="ph-bold ph-clock-countdown text-red-500 text-2xl"></i>
+                    <h3 class="font-bold text-sm mt-2 mb-1">Cancelamento com 30 dias</h3>
+                    <p class="text-xs text-slate-500">Solicitação formal de cancelamento do AC em 02/09, respeitando o aviso prévio de 30 dias.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-5 card-tech border-t-4 border-amber-400">
+                    <i class="ph-bold ph-users-three text-amber-500 text-2xl"></i>
+                    <h3 class="font-bold text-sm mt-2 mb-1">Time com tempo compartilhado</h3>
+                    <p class="text-xs text-slate-500">Fases enxutas e paralelizadas: a equipe divide o projeto com a operação do dia a dia (BAU).</p>
+                </div>
+                <div class="bg-white rounded-2xl p-5 card-tech border-t-4 border-emerald-400">
+                    <i class="ph-bold ph-broom text-emerald-500 text-2xl"></i>
+                    <h3 class="font-bold text-sm mt-2 mb-1">Base já auditada</h3>
+                    <p class="text-xs text-slate-500">Auditoria e higienização concluídas — migramos só a base saudável e qualificada.</p>
                 </div>
             </div>
         </section>
 
-        <!-- VISÃO MACRO: JORNADA INTEGRADA (FEEDBACK SILVIA/MARKETING) -->
-        <section id="visao-macro" class="mb-16">
-            <div class="bg-white rounded-2xl p-6 md:p-8 card-tech shadow-lg border border-slate-100">
-                <div class="text-center mb-8">
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-brand-accent bg-blue-50 px-2 py-1 rounded mb-2 inline-block">Visão Estratégica</span>
-                    <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Jornada Integrada do Cliente</h2>
-                    <p class="text-slate-500 mt-1 text-sm">Integração do ecossistema de ponta a ponta: do Marketing à Retenção (CS).</p>
+        <!-- GANTT -->
+        <section class="mb-16">
+            <div class="bg-white rounded-2xl p-6 md:p-8 card-tech">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Linha do tempo — 10 semanas</h2>
+                    <p class="text-slate-500 mt-1 text-sm">Fases em paralelo controlado. As duas marcações são os marcos inegociáveis.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
-                    <!-- Seta conectora visual (Aparece apenas no desktop) -->
-                    <div class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-slate-200 -z-10 transform -translate-y-1/2"></div>
-                    
-                    <!-- Topo de Funil -->
-                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl text-center relative z-10 hover:border-blue-400 transition-colors">
-                        <div class="w-10 h-10 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-3">
-                            <i class="ph-bold ph-magnet text-xl"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-sm">Captação Omnichannel</h4>
-                        <p class="text-xs text-slate-500 mt-1">Topo de Funil: Landing Pages, Redes, Campanhas.</p>
-                    </div>
+                <div class="overflow-x-auto pb-2">
+                  <div class="gantt-wrap">
 
-                    <!-- Meio de Funil -->
-                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl text-center relative z-10 hover:border-indigo-400 transition-colors">
-                        <div class="w-10 h-10 mx-auto bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-3">
-                            <i class="ph-bold ph-crosshair text-xl"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-sm">RD Station & Rastreabilidade</h4>
-                        <p class="text-xs text-slate-500 mt-1">Meio de Funil: Qualificação (MQL), Automação e Origem.</p>
-                    </div>
-
-                    <!-- Fundo de Funil -->
-                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl text-center relative z-10 hover:border-emerald-400 transition-colors">
-                        <div class="w-10 h-10 mx-auto bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-3">
-                            <i class="ph-bold ph-handshake text-xl"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-sm">Vendas (Hunters)</h4>
-                        <p class="text-xs text-slate-500 mt-1">Fundo de Funil: Pipelines Comerciais, SLAs e SQL.</p>
-                    </div>
-
-                    <!-- Pós Venda / CS -->
-                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl text-center relative z-10 hover:border-amber-400 transition-colors">
-                        <div class="w-10 h-10 mx-auto bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-3">
-                            <i class="ph-bold ph-chart-line-up text-xl"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-sm">Customer Success</h4>
-                        <p class="text-xs text-slate-500 mt-1">Pós-venda: Retenção, Farmers e Oportunidades Upsell.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CRONOGRAMA EM GRID DE 4 COLUNAS -->
-        <section id="cronograma-grid" class="mb-16">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">Cronograma de Execução</h2>
-                    <p class="text-slate-500 mt-1">Clique nas tarefas para marcá-las como concluídas. Baseado no Kick-off do dia 08/06.</p>
-                </div>
-                <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm">
-                    <i class="ph-fill ph-calendar-check text-brand-accent text-xl"></i>
-                    <span class="text-sm font-semibold text-slate-700">Período: 08/06 a 02/08</span>
-                </div>
-            </div>
-
-            <!-- GRID PRINCIPAL -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
-                
-                <!-- FASE 1 -->
-                <div class="bg-gray-50 rounded-xl shadow border-t-4 border-slate-300 hover:border-brand-accent card-tech flex flex-col h-full overflow-hidden">
-                    <div class="bg-white p-5 border-b border-slate-100">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-100 px-2 py-1 rounded">08/06 a 21/06</span>
-                        <h3 class="text-lg font-bold text-slate-800 mt-3 leading-tight">Fase 1<br/>Auditoria e Base Legado</h3>
-                    </div>
-                    <div class="p-3 flex-grow">
-                        <ul class="space-y-1">
-                            <li class="flex items-start gap-3 cursor-pointer bg-emerald-50/50 opacity-70 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-check-circle text-emerald-500 text-lg mt-0.5 shrink-0 transition-colors" data-original-icon="ph-users-three"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm leading-snug transition-all duration-300 line-through text-slate-400"><span class="font-bold text-slate-800">[08/06 a 10/06]</span> Reunião de Kick-off Executada (08/06) e validação inicial de segurança TISAX.</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Robson (TI)</span></div>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-broom text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[11/06 a 15/06]</span> Auditoria do ActiveCampaign, validação de e-mails, telefones e higienização da base.</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Equipe V4</span></div>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-map-trifold text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[16/06 a 18/06]</span> Mapeamento da jornada do cliente (Topo, Meio e Fundo de Funil).</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Silvia (MKT)</span></div>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-funnel text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[19/06 a 21/06]</span> Desenho estratégico dos funis completos e parametrização de rastreabilidade (Origem).</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Rodolfo (V4) / Karina</span></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- FASE 2 -->
-                <div class="bg-gray-50 rounded-xl shadow border-t-4 border-slate-300 hover:border-brand-accent card-tech flex flex-col h-full overflow-hidden">
-                    <div class="bg-white p-5 border-b border-slate-100">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-100 px-2 py-1 rounded">22/06 a 05/07</span>
-                        <h3 class="text-lg font-bold text-slate-800 mt-3 leading-tight">Fase 2<br/>Setup RD e Importação</h3>
-                    </div>
-                    <div class="p-3 flex-grow">
-                        <ul class="space-y-1">
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-export text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[22/06 a 25/06]</span> Exportação final da base decantada e desativação parcial do ActiveCampaign.</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Equipe V4</span></div>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-globe-hemisphere-west text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[26/06 a 29/06]</span> Setup inicial do RD Station (Domínios, Segurança Corporativa e Usuários).</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Robson (TI)</span></div>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-database text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[30/06 a 02/07]</span> Importação estruturada e segmentada dos leads limpos no RD Marketing.</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Silvia (MKT)</span></div>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-kanban text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[03/07 a 05/07]</span> Construção dos pipelines comerciais no RD CRM (SDR, Hunters, Farmers).</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Rodolfo (V4)</span></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- FASE 3 -->
-                <div class="bg-gray-50 rounded-xl shadow border-t-4 border-slate-300 hover:border-brand-accent card-tech flex flex-col h-full overflow-hidden">
-                    <div class="bg-white p-5 border-b border-slate-100">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-100 px-2 py-1 rounded">06/07 a 19/07</span>
-                        <h3 class="text-lg font-bold text-slate-800 mt-3 leading-tight">Fase 3<br/>Nutrição e Homologação</h3>
-                    </div>
-                    <div class="p-3 flex-grow">
-                        <ul class="space-y-1">
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-target text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[06/07 a 09/07]</span> Configuração do Lead Scoring focado no ICP, garantindo rastreabilidade da origem.</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Silvia (MKT)</span></div>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-robot text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[10/07 a 13/07]</span> Implementação RD Conversas (API) e Chatbot de triagem no WhatsApp.</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4)</span></div>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-arrows-split text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[14/07 a 16/07]</span> Criação das regras de roteamento e distribuição de leads comerciais.</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Karina</span></div>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-chart-bar text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[17/07 a 19/07]</span> Setup de rastreabilidade e Dashboards iniciais de acompanhamento SLA.</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Karina</span></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- FASE 4 -->
-                <div class="bg-gray-50 rounded-xl shadow border-t-4 border-slate-300 hover:border-brand-accent card-tech flex flex-col h-full overflow-hidden relative">
-                    <div class="bg-white p-5 border-b border-slate-100">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-100 px-2 py-1 rounded">20/07 a 02/08</span>
-                        <h3 class="text-lg font-bold text-slate-800 mt-3 leading-tight">Fase 4<br/>Treinamento e Go-Live</h3>
-                    </div>
-                    <div class="p-3 flex-grow flex flex-col">
-                        <ul class="space-y-1 mb-4">
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-chalkboard-teacher text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[20/07 a 23/07]</span> Treinamento prático sob medida: SDR (Yohanna), Hunters e Farmers.</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Rodolfo (V4)</span></div>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-presentation-chart text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[24/07 a 27/07]</span> Treinamento da Liderança para leitura e extração de dados no BI.</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Rodolfo (V4) / Karina</span></div>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 cursor-pointer hover:bg-slate-200/50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <i class="task-icon ph-fill ph-rocket-launch text-brand-accent text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                <div class="flex flex-col">
-                                    <span class="task-text text-sm text-slate-600 leading-snug transition-all duration-300"><span class="font-bold text-slate-800">[28/07 a 30/07]</span> Operação Assistida de Go-Live e acompanhamento diário dos leads.</span>
-                                    <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Equipe V4</span></div>
-                                </div>
-                            </li>
-                        </ul>
-                        
-                        <!-- DIA D BADGE -->
-                        <div class="mt-auto border-t-2 border-dashed border-red-200 pt-3">
-                            <div class="flex items-center gap-3 cursor-pointer hover:bg-red-50 p-2 rounded-lg transition-all duration-300 select-none group" onclick="toggleTask(this)">
-                                <div class="flex flex-col w-full relative overflow-hidden rounded-xl border border-red-300 bg-red-50/50">
-                                    <div class="bg-red-500 text-white text-center py-1.5 font-black tracking-widest flex items-center justify-center gap-2">
-                                        <i class="ph-fill ph-warning-circle animate-pulse"></i> DIA D: 31/07
-                                    </div>
-                                    <div class="p-3 flex items-start gap-3">
-                                        <i class="task-icon ph-fill ph-power text-red-500 text-lg mt-0.5 shrink-0 transition-colors"></i>
-                                        <div class="flex flex-col">
-                                            <span class="task-text text-sm text-slate-800 font-bold leading-snug transition-all duration-300">GO-LIVE DEFINITIVO <br/><span class="font-medium text-xs text-slate-600">Desligamento oficial do ActiveCampaign.</span></span>
-                                            <div class="mt-1"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-red-100 text-red-700 group-hover:bg-white transition-colors"><i class="ph-fill ph-user"></i> Hebert (V4) / Mari Costa</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- GOVERNANÇA E RITUAIS DE ACOMPANHAMENTO (FEEDBACK MARI) -->
-        <section id="rituais" class="mb-20">
-            <div class="bg-white rounded-2xl p-6 md:p-8 card-tech shadow-lg border border-slate-100">
-                <div class="text-center mb-8">
-                    <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Governança e Rituais de Acompanhamento</h2>
-                    <p class="text-slate-500 mt-1 text-sm">Estrutura de comunicação para garantir clareza tática e visibilidade do projeto.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Ritual 1: Atendimento Diário -->
-                    <div class="bg-slate-50 border border-slate-200 p-6 rounded-xl relative hover:border-brand-accent/50 transition-colors">
-                        <div class="absolute top-0 right-0 -mr-3 -mt-3 w-10 h-10 bg-brand-accent text-white rounded-full flex items-center justify-center shadow-lg">
-                            <i class="ph-bold ph-chats-teardrop text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">Atendimento Diário</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Atualização diária no grupo com o que está sendo executado e novidades do projeto.</p>
-                        <div class="flex items-center gap-2 mt-auto">
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-200 px-2 py-1 rounded"><i class="ph-fill ph-clock"></i> Frequência: Diária</span>
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-blue-600 bg-blue-100 px-2 py-1 rounded"><i class="ph-fill ph-user"></i> Hebert (Hands-on)</span>
+                    <!-- Cabeçalho de semanas -->
+                    <div class="g-row g-head">
+                        <div class="g-lbl">Fase / Semana</div>
+                        <div class="g-track">
+                            <div class="wk" style="color:#047857;">✓<span>Feito</span></div>
+                            <div class="wk">S1<span>28/07</span></div>
+                            <div class="wk">S2<span>04/08</span></div>
+                            <div class="wk">S3<span>11/08</span></div>
+                            <div class="wk">S4<span>18/08</span></div>
+                            <div class="wk">S5<span>25/08</span></div>
+                            <div class="wk">S6<span>01/09</span></div>
+                            <div class="wk">S7<span>08/09</span></div>
+                            <div class="wk">S8<span>15/09</span></div>
+                            <div class="wk">S9<span>22/09</span></div>
+                            <div class="wk">S10<span>29/09</span></div>
                         </div>
                     </div>
 
-                    <!-- Ritual 2: Check-ins Semanais -->
-                    <div class="bg-slate-50 border border-slate-200 p-6 rounded-xl relative hover:border-brand-accent/50 transition-colors">
-                        <div class="absolute top-0 right-0 -mr-3 -mt-3 w-10 h-10 bg-indigo-500 text-white rounded-full flex items-center justify-center shadow-lg">
-                            <i class="ph-bold ph-file-pdf text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">Check-ins Semanais</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Atualização estruturada do que foi feito do cronograma na semana anterior (acompanhado de documento em PDF).</p>
-                        <div class="flex items-center gap-2 mt-auto">
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-200 px-2 py-1 rounded"><i class="ph-fill ph-clock"></i> Frequência: Semanal</span>
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-indigo-600 bg-indigo-100 px-2 py-1 rounded"><i class="ph-fill ph-users"></i> Comitê V4</span>
+                    <!-- Concluídos (confirmados nas atas) -->
+                    <div class="g-row"><div class="g-lbl">Kick-off &amp; decisão estratégica</div><div class="g-track"><div class="bar bg-emerald-500" style="grid-column:1/2;"><i class="ph-bold ph-check"></i></div></div></div>
+                    <div class="g-row"><div class="g-lbl">Auditoria da base legada</div><div class="g-track"><div class="bar bg-emerald-500" style="grid-column:1/2;"><i class="ph-bold ph-check"></i></div></div></div>
+                    <div class="g-row"><div class="g-lbl">Arquitetura de entregabilidade (subdomínios)</div><div class="g-track"><div class="bar bg-emerald-500" style="grid-column:1/2;"><i class="ph-bold ph-check"></i></div></div></div>
+                    <div class="g-row"><div class="g-lbl">Governança de TI, segurança &amp; MFA</div><div class="g-track"><div class="bar bg-emerald-500" style="grid-column:1/2;"><i class="ph-bold ph-check"></i></div></div></div>
+                    <div class="g-row"><div class="g-lbl">Mapeamento da jornada / funil</div><div class="g-track"><div class="bar bg-emerald-500" style="grid-column:1/2;"><i class="ph-bold ph-check"></i></div></div></div>
+
+                    <!-- Em execução -->
+                    <div class="g-row"><div class="g-lbl">1 · Arquitetura &amp; Planejamento</div><div class="g-track"><div class="bar bg-indigo-500" style="grid-column:2/4;">S1–S2</div></div></div>
+                    <div class="g-row"><div class="g-lbl">2 · Setup técnico &amp; Entregabilidade</div><div class="g-track"><div class="bar bg-blue-500" style="grid-column:3/6;">S2–S4</div></div></div>
+                    <div class="g-row"><div class="g-lbl">3 · Migração de dados (faseada)</div><div class="g-track"><div class="bar bg-cyan-600" style="grid-column:4/7;">S3–S5</div></div></div>
+                    <div class="g-row"><div class="g-lbl">4 · Reconstrução de ativos</div><div class="g-track"><div class="bar bg-violet-500" style="grid-column:4/7;">S3–S5</div></div></div>
+                    <div class="g-row"><div class="g-lbl">5 · Integrações (Marketing + CRM)</div><div class="g-track"><div class="bar bg-fuchsia-600" style="grid-column:5/8;">S4–S6</div></div></div>
+                    <div class="g-row"><div class="g-lbl">6 · QA, testes &amp; homologação</div><div class="g-track"><div class="bar bg-amber-500" style="grid-column:6/8;">S5–S6</div></div></div>
+                    <div class="g-row"><div class="g-lbl">7 · Warm-up &amp; enriquecimento</div><div class="g-track"><div class="bar bg-orange-500" style="grid-column:7/11;">S6–S9</div></div></div>
+                    <div class="g-row"><div class="g-lbl">8 · Treinamento &amp; enablement</div><div class="g-track"><div class="bar bg-teal-600" style="grid-column:8/11;">S7–S9</div></div></div>
+                    <div class="g-row" style="border-bottom:none;"><div class="g-lbl">9 · Go-live &amp; estabilização</div><div class="g-track"><div class="bar bg-emerald-600" style="grid-column:11/12;">S10</div></div></div>
+
+                    <!-- Linha de marcos -->
+                    <div class="g-row" style="border-top:2px solid #E2E8F0; border-bottom:none; min-height:44px;">
+                        <div class="g-lbl" style="color:#EF4444;">Marcos</div>
+                        <div class="g-track">
+                            <div style="grid-column:7/8; text-align:center;"><span class="mk" style="color:#B91C1C; background:#FEE2E2; border:1px solid #FECACA;"><i class="ph-fill ph-clock-countdown"></i> M1</span></div>
+                            <div style="grid-column:11/12; text-align:center;"><span class="mk" style="color:#047857; background:#D1FAE5; border:1px solid #A7F3D0;"><i class="ph-fill ph-flag-checkered"></i> M2</span></div>
                         </div>
                     </div>
+                  </div>
+                </div>
+
+                <!-- Legenda dos marcos -->
+                <div class="mt-6 flex flex-wrap gap-4 items-center border-t border-slate-100 pt-5">
+                    <span class="inline-flex items-center gap-2 text-xs font-bold text-red-600 bg-red-50 border border-red-100 px-3 py-1.5 rounded-full"><i class="ph-fill ph-clock-countdown"></i> M1 · 02/09 (S6) — Solicitar cancelamento do AC (após homologação)</span>
+                    <span class="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full"><i class="ph-fill ph-flag-checkered"></i> M2 · 02/10 (S10) — GO-LIVE = último dia do AC</span>
                 </div>
             </div>
         </section>
 
-        <!-- SEÇÃO TO-DO: PRIMEIRA SEMANA -->
-        <section id="to-do-semana-1" class="mb-24 max-w-5xl mx-auto">
-            <div class="bg-white rounded-3xl shadow-2xl p-1 border border-slate-200 overflow-hidden">
-                <div class="bg-slate-50 rounded-[22px] p-8 md:p-10 border border-white">
-                    
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-slate-200 pb-6">
-                        <div class="flex items-center gap-4">
-                            <div class="bg-blue-100 p-3 rounded-xl text-blue-600 shadow-inner">
-                                <i class="ph-fill ph-list-checks text-3xl"></i>
-                            </div>
-                            <div>
-                                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">TO-DO: Higienização de Base</h2>
-                                <p class="text-slate-500 mt-1 font-medium">Ações imediatas e focadas na desativação segura do ActiveCampaign.</p>
-                            </div>
-                        </div>
-                    </div>
+        <!-- DETALHAMENTO POR FASE -->
+        <section class="mb-8">
+            <h2 class="text-xl md:text-2xl font-extrabold text-slate-800 tracking-tight mb-6 flex items-center gap-3">
+                <i class="ph-fill ph-list-numbers text-brand-accent"></i> Detalhamento por fase
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                    <div class="space-y-4">
-                        
-                        <!-- Concluído -->
-                        <div class="flex items-center gap-4 p-5 rounded-2xl bg-emerald-50 border border-emerald-200 transition-all hover:shadow-md">
-                            <div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-sm">
-                                <i class="ph-bold ph-check text-xl"></i>
-                            </div>
-                            <div class="flex-grow">
-                                <span class="text-emerald-900 font-semibold text-base md:text-lg block">Liberação de acesso ao ActiveCampaign pela TI (Target/Robson).</span>
-                                <span class="text-xs text-emerald-700/80 font-bold uppercase tracking-wider flex items-center gap-1 mt-1">
-                                    <i class="ph-fill ph-check-circle"></i> Concluído pela Equipe Executora em 08/06
-                                </span>
-                            </div>
-                        </div>
-                        
-                        <!-- Pendente 1 -->
-                        <div class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-slate-300 hover:shadow-md">
-                            <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center shrink-0 border border-slate-200">
-                                <i class="ph-bold ph-circle-dashed text-xl"></i>
-                            </div>
-                            <div class="flex-grow">
-                                <span class="text-slate-800 font-semibold text-base md:text-lg block">Auditoria diagnóstica da base de dados e mapeamento de tags legadas.</span>
-                                <span class="text-[10px] bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md uppercase font-bold tracking-wider mt-2 inline-flex items-center gap-1">
-                                    <i class="ph-fill ph-user-focus"></i> Pendente: Hebert (V4) / Silvia (MKT)
-                                </span>
-                            </div>
-                        </div>
+                <div class="bg-emerald-50/40 rounded-xl card-tech p-5 border-l-4 border-emerald-500">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800"><i class="ph-fill ph-check-circle text-emerald-500"></i> Kick-off &amp; decisão estratégica</h3><span class="done-ribbon">CONCLUÍDO</span></div>
+                    <p class="text-xs text-slate-600 mb-3">Transição oficial para o RD Station definida — operação dividida em <strong>RD Marketing + RD CRM</strong> para acabar com a fragmentação em planilhas e dar rastreabilidade de ponta a ponta.</p>
+                    <p class="text-[11px] text-slate-400 mt-1"><i class="ph-bold ph-user"></i> Responsável: Mari Costa</p>
+                </div>
 
-                        <!-- Pendente 2 -->
-                        <div class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-slate-300 hover:shadow-md">
-                            <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center shrink-0 border border-slate-200">
-                                <i class="ph-bold ph-circle-dashed text-xl"></i>
-                            </div>
-                            <div class="flex-grow">
-                                <span class="text-slate-800 font-semibold text-base md:text-lg block">Reunião de Governança de TI com Robson: Definição de acessos ao RD Station respeitando os critérios de segurança corporativa e certificação TISAX.</span>
-                                <span class="text-[10px] bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md uppercase font-bold tracking-wider mt-2 inline-flex items-center gap-1">
-                                    <i class="ph-fill ph-user-focus"></i> Pendente: Hebert (V4) / Robson (TI)
-                                </span>
-                            </div>
-                        </div>
+                <div class="bg-emerald-50/40 rounded-xl card-tech p-5 border-l-4 border-emerald-500">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800"><i class="ph-fill ph-check-circle text-emerald-500"></i> Auditoria da base legada</h3><span class="done-ribbon">CONCLUÍDO</span></div>
+                    <p class="text-xs text-slate-600 mb-3">Raio-X dos <strong>84.415 contatos</strong>: base majoritariamente operacional (~80%) e quase metade (~40 mil) fria/inativa há 12+ meses. Tiers de engajamento e campos de ICP auditados.</p>
+                    <p class="text-[11px] text-slate-400 mt-1"><i class="ph-bold ph-user"></i> Responsável: Hebert Gustavo</p>
+                </div>
 
-                        <!-- Pendente 3 -->
-                        <div class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-slate-300 hover:shadow-md">
-                            <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center shrink-0 border border-slate-200">
-                                <i class="ph-bold ph-circle-dashed text-xl"></i>
-                            </div>
-                            <div class="flex-grow">
-                                <span class="text-slate-800 font-semibold text-base md:text-lg block">Planilha Transitória de Leads: Setup do controle de MQLs e treinamento da Yohanna (SDR) até o Go-Live oficial do RD Station.</span>
-                                <span class="text-[10px] bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md uppercase font-bold tracking-wider mt-2 inline-flex items-center gap-1">
-                                    <i class="ph-fill ph-user-focus"></i> Pendente: Hebert (V4) / Yohanna (SDR)
-                                </span>
-                            </div>
-                        </div>
+                <div class="bg-emerald-50/40 rounded-xl card-tech p-5 border-l-4 border-emerald-500">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800"><i class="ph-fill ph-check-circle text-emerald-500"></i> Arquitetura de entregabilidade</h3><span class="done-ribbon">CONCLUÍDO</span></div>
+                    <p class="text-xs text-slate-600 mb-3">Decisão de provisionar <strong>subdomínios distintos</strong>, separando as comunicações de Marketing (aquisição) das operacionais do SG3 — protegendo a reputação de IP e evitando spam.</p>
+                    <p class="text-[11px] text-slate-400 mt-1"><i class="ph-bold ph-user"></i> Responsável: Hebert Gustavo</p>
+                </div>
 
-                    </div>
-                    
-                    <div class="mt-10 flex justify-end">
-                        <button onclick="window.print()" class="w-full md:w-auto bg-brand-primary hover:bg-slate-800 text-white font-bold py-3 px-6 rounded-xl shadow transition-all flex items-center justify-center gap-2">
-                            <i class="ph ph-printer text-xl"></i> Exportar PDF / Imprimir
-                        </button>
-                    </div>
+                <div class="bg-emerald-50/40 rounded-xl card-tech p-5 border-l-4 border-emerald-500">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800"><i class="ph-fill ph-check-circle text-emerald-500"></i> Governança de TI &amp; segurança</h3><span class="done-ribbon">CONCLUÍDO</span></div>
+                    <p class="text-xs text-slate-600 mb-3">Gestão de acessos centralizada na TI (menor privilégio, perfis por área) e <strong>MFA obrigatório</strong> para todos os usuários, visando conformidade com certificações.</p>
+                    <p class="text-[11px] text-slate-400 mt-1"><i class="ph-bold ph-user"></i> Responsável: Taghert Brunno Toledo</p>
+                </div>
 
+                <div class="bg-emerald-50/40 rounded-xl card-tech p-5 border-l-4 border-emerald-500 md:col-span-2">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800"><i class="ph-fill ph-check-circle text-emerald-500"></i> Mapeamento da jornada / funil</h3><span class="done-ribbon">CONCLUÍDO</span></div>
+                    <p class="text-xs text-slate-600 mb-3">Desenho macro dos funis que serão parametrizados no RD: <strong>Inbound (Marketing) · Triagem/SDR (BANT/SPICED) · Closer (Fechamento) · Farmers (Expansão de Contas)</strong>.</p>
+                    <p class="text-[11px] text-slate-400 mt-1"><i class="ph-bold ph-user"></i> Responsáveis: Hebert Gustavo e Rodolfo Barbosa Freitas</p>
+                </div>
+
+                <div class="bg-white rounded-xl card-tech p-5 border-l-4 border-indigo-500">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800">1 · Arquitetura, SG3 &amp; Campos obrigatórios</h3><span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">S1–S2</span></div>
+                    <p class="text-xs text-slate-500 mb-3"><strong>Objetivo:</strong> desenhar o RD e o fluxo de dados antes de construir.</p>
+                    <ul class="text-xs text-slate-600 space-y-1.5">
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-indigo-400 mt-0.5"></i> Fluxo contínuo de extração <strong>SG3 → base operacional do RD</strong>.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-indigo-400 mt-0.5"></i> De/Para de campos e parametrização de <strong>campos obrigatórios</strong> (Faturamento, ERP, Cargo).</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-indigo-400 mt-0.5"></i> Consolidação das 192 tags → taxonomia seg_ / tech_ / status_.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-indigo-400 mt-0.5"></i> Plano de migração por tier: Quente (13.710) → Morno → Tépido.</li>
+                    </ul>
+                    <p class="text-[11px] text-slate-400 mt-3"><i class="ph-bold ph-user"></i> Hebert Gustavo + Executiva (Silvia Lieta, Thiago Quadra)</p>
+                </div>
+
+                <div class="bg-white rounded-xl card-tech p-5 border-l-4 border-blue-500">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800">2 · Setup técnico &amp; Entregabilidade</h3><span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">S2–S4</span></div>
+                    <p class="text-xs text-slate-500 mb-3"><strong>Objetivo:</strong> fundação técnica e reputação de envio.</p>
+                    <ul class="text-xs text-slate-600 space-y-1.5">
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-blue-400 mt-0.5"></i> Conta RD, permissões e campos personalizados criados (De/Para).</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-blue-400 mt-0.5"></i> Autenticação do domínio: SPF, DKIM, DMARC + domínio de envio dedicado.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-blue-400 mt-0.5"></i> Código de rastreamento no site, GA4 e padrão de UTMs.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-blue-400 mt-0.5"></i> Definição do plano de aquecimento (rampa de volume).</li>
+                    </ul>
+                    <p class="text-[11px] text-slate-400 mt-3"><i class="ph-bold ph-user"></i> V4 + Cliente (TI / DNS)</p>
+                </div>
+
+                <div class="bg-white rounded-xl card-tech p-5 border-l-4 border-cyan-600">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800">3 · Migração de dados (faseada)</h3><span class="text-[10px] font-bold text-cyan-700 bg-cyan-50 px-2 py-1 rounded">S3–S5</span></div>
+                    <p class="text-xs text-slate-500 mb-3"><strong>Objetivo:</strong> levar ao RD apenas dados limpos e válidos.</p>
+                    <ul class="text-xs text-slate-600 space-y-1.5">
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-cyan-500 mt-0.5"></i> Export final da base higienizada + verificação de e-mail e telefones ativos (qualidade).</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-cyan-500 mt-0.5"></i> Remoção de contatos de profissionais já desligados das empresas.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-cyan-500 mt-0.5"></i> Deduplicação, normalização e import faseado (Quente → Morno → Tépido).</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-cyan-500 mt-0.5"></i> Migração de tags consolidadas e campos mapeados.</li>
+                    </ul>
+                    <p class="text-[11px] text-slate-400 mt-3"><i class="ph-bold ph-user"></i> Hebert Gustavo (Dados) + Executiva (operação)</p>
+                </div>
+
+                <div class="bg-white rounded-xl card-tech p-5 border-l-4 border-violet-500">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800">4 · Reconstrução de ativos</h3><span class="text-[10px] font-bold text-violet-600 bg-violet-50 px-2 py-1 rounded">S3–S5</span></div>
+                    <p class="text-xs text-slate-500 mb-3"><strong>Objetivo:</strong> recriar a máquina de marketing no RD.</p>
+                    <ul class="text-xs text-slate-600 space-y-1.5">
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-violet-400 mt-0.5"></i> Templates de e-mail com identidade visual.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-violet-400 mt-0.5"></i> Landing pages e formulários com perfilamento progressivo (captura de ICP).</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-violet-400 mt-0.5"></i> Fluxos de automação: boas-vindas, nutrição, distribuição e notificação de SDR.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-violet-400 mt-0.5"></i> Configuração do Lead Scoring (perfil + interesse).</li>
+                    </ul>
+                    <p class="text-[11px] text-slate-400 mt-3"><i class="ph-bold ph-user"></i> V4 + Marketing</p>
+                </div>
+
+                <div class="bg-white rounded-xl card-tech p-5 border-l-4 border-fuchsia-600">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800">5 · Integrações (Marketing + CRM)</h3><span class="text-[10px] font-bold text-fuchsia-700 bg-fuchsia-50 px-2 py-1 rounded">S4–S6</span></div>
+                    <p class="text-xs text-slate-500 mb-3"><strong>Objetivo:</strong> RD 100% conectado ao ecossistema (sem Conversas).</p>
+                    <ul class="text-xs text-slate-600 space-y-1.5">
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-fuchsia-400 mt-0.5"></i> RD Marketing ↔ RD CRM (closed loop marketing-vendas).</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-fuchsia-400 mt-0.5"></i> Site/CMS (formulários nativos e tracking) + Meta Ads e Google Ads.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-fuchsia-400 mt-0.5"></i> GA4 e mensuração de conversões (ROI por canal).</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-fuchsia-400 mt-0.5"></i> Integração com ERP / ferramentas de vendas (Webhooks/API).</li>
+                    </ul>
+                    <p class="text-[11px] text-slate-400 mt-3"><i class="ph-bold ph-user"></i> V4 + Cliente (TI / Site / ERP)</p>
+                </div>
+
+                <div class="bg-white rounded-xl card-tech p-5 border-l-4 border-amber-500">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800">6 · QA, testes &amp; homologação</h3><span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-1 rounded">S5–S6</span></div>
+                    <p class="text-xs text-slate-500 mb-3"><strong>Objetivo:</strong> nada vai ao ar sem validação. Gate para o M1.</p>
+                    <ul class="text-xs text-slate-600 space-y-1.5">
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-amber-400 mt-0.5"></i> Testes ponta a ponta de automações e Lead Scoring.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-amber-400 mt-0.5"></i> Testes de entregabilidade (inbox placement) e autenticação.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-amber-400 mt-0.5"></i> Testes de formulários, tracking, UTMs e integração CRM.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-amber-400 mt-0.5"></i> Homologação e aprovação formal do cliente → dispara o cancelamento do AC.</li>
+                    </ul>
+                    <p class="text-[11px] text-slate-400 mt-3"><i class="ph-bold ph-user"></i> V4 + Cliente (Homologação)</p>
+                </div>
+
+                <div class="bg-white rounded-xl card-tech p-5 border-l-4 border-orange-500">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800">7 · Warm-up &amp; enriquecimento</h3><span class="text-[10px] font-bold text-orange-700 bg-orange-50 px-2 py-1 rounded">S6–S9</span></div>
+                    <p class="text-xs text-slate-500 mb-3"><strong>Objetivo:</strong> reputação forte e dados de ICP.</p>
+                    <ul class="text-xs text-slate-600 space-y-1.5">
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-orange-400 mt-0.5"></i> Aquecimento do domínio: envios reais ao núcleo Quente, escalando volume semanal.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-orange-400 mt-0.5"></i> Reativação dos ~40 mil frios (e-mail / Meta Ads) — <strong>só quem reagir é importado ao RD</strong>.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-orange-400 mt-0.5"></i> 1ª campanha de enriquecimento de ICP (Faturamento, ERP, Cargo).</li>
+                    </ul>
+                    <p class="text-[11px] text-slate-400 mt-3"><i class="ph-bold ph-user"></i> Marketing (Silvia Lieta) + V4</p>
+                </div>
+
+                <div class="bg-white rounded-xl card-tech p-5 border-l-4 border-teal-600">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800">8 · Treinamento &amp; enablement</h3><span class="text-[10px] font-bold text-teal-700 bg-teal-50 px-2 py-1 rounded">S7–S9</span></div>
+                    <p class="text-xs text-slate-500 mb-3"><strong>Objetivo:</strong> o time operando sozinho no go-live.</p>
+                    <ul class="text-xs text-slate-600 space-y-1.5">
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-teal-500 mt-0.5"></i> Treinamento Marketing (RD Marketing, automações, LPs).</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-teal-500 mt-0.5"></i> Treinamento Pré-vendas/SDR (Lead Scoring, qualificação, CRM).</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-teal-500 mt-0.5"></i> Treinamento Vendas/Hunters (funil, propostas) + playbooks.</li>
+                    </ul>
+                    <p class="text-[11px] text-slate-400 mt-3"><i class="ph-bold ph-user"></i> V4 (Enablement) → Times do cliente</p>
+                </div>
+
+                <div class="bg-white rounded-xl card-tech p-5 border-l-4 border-emerald-600">
+                    <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-slate-800">9 · Go-live &amp; estabilização</h3><span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded">S10 → S12</span></div>
+                    <p class="text-xs text-slate-500 mb-3"><strong>Objetivo:</strong> virada de chave e monitoramento.</p>
+                    <ul class="text-xs text-slate-600 space-y-1.5">
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-emerald-500 mt-0.5"></i> Cutover: RD assume 100%; automações do AC desligadas.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-emerald-500 mt-0.5"></i> Monitoramento intensivo de entregabilidade nas primeiras 72h e 2 semanas.</li>
+                        <li class="flex gap-2"><i class="ph-fill ph-check-circle text-emerald-500 mt-0.5"></i> Ajustes finos de scoring/segmentação + offboarding e backup final do AC.</li>
+                    </ul>
+                    <p class="text-[11px] text-slate-400 mt-3"><i class="ph-bold ph-user"></i> V4 + Marketing (acompanhamento pós go-live)</p>
                 </div>
             </div>
         </section>
 
+        <!-- CAMINHO CRÍTICO / GOVERNANÇA -->
+        <section class="mb-20">
+            <div class="bg-brand-gradient text-white rounded-2xl p-6 md:p-10 card-tech relative overflow-hidden">
+                <div class="absolute top-0 right-0 -mr-16 -mt-16 w-56 h-56 rounded-full bg-brand-accent opacity-10 blur-3xl"></div>
+                <div class="relative z-10">
+                    <h2 class="text-2xl font-extrabold tracking-tight mb-2 flex items-center gap-3"><i class="ph-fill ph-path text-brand-accent"></i> Caminho crítico &amp; governança do risco</h2>
+                    <p class="text-slate-400 text-sm mb-8">Em 10 semanas com time de tempo compartilhado, a disciplina de sequência protege a data de go-live.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 relative z-10">
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                        <i class="ph-fill ph-shield-warning text-red-400 text-2xl mb-2"></i>
+                        <h3 class="font-bold text-sm mb-2">Dependência de DNS &amp; entregabilidade</h3>
+                        <p class="text-xs text-slate-300">Autenticação de domínio (S2) e aquecimento (S6) são o caminho crítico: o núcleo Quente precisa de reputação sólida até o go-live.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                        <i class="ph-fill ph-calendar-x text-brand-accent text-2xl mb-2"></i>
+                        <h3 class="font-bold text-sm mb-2">Marco de cancelamento travado</h3>
+                        <p class="text-xs text-slate-300">O pedido de cancelamento do AC (M1, S6) só dispara após a homologação (Fase 6) — a data efetiva coincide com um RD já validado.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                        <i class="ph-fill ph-buffer text-amber-400 text-2xl mb-2"></i>
+                        <h3 class="font-bold text-sm mb-2">Buffer de time compartilhado</h3>
+                        <p class="text-xs text-slate-300">Rituais semanais de status e paralelização mantêm o ritmo mesmo com a equipe dividida com o BAU, antecipando bloqueios.</p>
+                    </div>
+                </div>
+                <div class="mt-8 border-t border-white/10 pt-6 relative z-10">
+                    <h3 class="text-sm font-bold uppercase tracking-widest text-brand-accent mb-4">Sequência dos marcos até a operação 100% no RD</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+                        <div class="flex items-start gap-2"><span class="bg-white/10 text-white w-8 h-6 rounded flex items-center justify-center font-bold shrink-0">S6</span> Homologação aprovada → <strong>solicita cancelamento do AC (M1)</strong>.</div>
+                        <div class="flex items-start gap-2"><span class="bg-white/10 text-white w-8 h-6 rounded flex items-center justify-center font-bold shrink-0">S6–9</span> Warm-up ativo + enriquecimento de ICP rodando no RD.</div>
+                        <div class="flex items-start gap-2"><span class="bg-white/10 text-white w-8 h-6 rounded flex items-center justify-center font-bold shrink-0">S7–9</span> Times treinados e operando em ambiente homologado.</div>
+                        <div class="flex items-start gap-2"><span class="bg-brand-accent text-white w-8 h-6 rounded flex items-center justify-center font-bold shrink-0">S10</span> <strong>Go-live (M2) = último dia do AC.</strong> RD 100%.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- FOOTER ORIGINAL INTEGRADO -->
+    <!-- FOOTER -->
     <footer class="bg-[#0B1120] text-slate-400 py-16 mt-auto border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-10">
-            <img src="https://www.executiva.com.br/wp-content/uploads/2026/01/logo-executiva.svg" 
-                 alt="Executiva" 
-                 class="h-10 grayscale opacity-60 hover:opacity-100 transition-opacity"
+            <img src="https://www.executiva.com.br/wp-content/uploads/2026/01/logo-executiva.svg" alt="Executiva" class="h-10 grayscale opacity-60 hover:opacity-100 transition-opacity"
                  onerror="this.onerror=null; this.src='https://placehold.co/150x40/0B1120/FFFFFF?text=EXECUTIVA'">
-            
             <div class="w-24 h-px md:w-px md:h-12 bg-slate-700 rounded-full"></div>
-            
             <div class="flex items-center gap-4">
                 <span class="text-xs font-semibold tracking-[0.2em] uppercase text-slate-500">Powered by</span>
-                <img src="https://brand.v4company.com/_next/image?url=%2Fimages%2Flogos%2Fsimbolo-company.webp&w=256&q=75" 
-                     alt="V4 Company" 
-                     class="h-8 md:h-10 object-contain hover:scale-105 transition-transform">
+                <img src="https://brand.v4company.com/_next/image?url=%2Fimages%2Flogos%2Fsimbolo-company.webp&w=256&q=75" alt="V4 Company" class="h-8 md:h-10 object-contain hover:scale-105 transition-transform">
             </div>
         </div>
         <div class="text-center text-xs text-slate-600 mt-10 font-medium tracking-wide">
-            Documento Tático e Confidencial &copy; 2026.
+            Cronograma de Migração ActiveCampaign → RD Station &copy; 2026 · Material interno · Concluídos e responsáveis conforme atas do cliente · Datas-base sujeitas à confirmação do kickoff.
         </div>
     </footer>
-
-    <!-- INTERATIVIDADE JS -->
-    <script>
-        function toggleTask(element) {
-            const textSpan = element.querySelector('.task-text');
-            const icon = element.querySelector('.task-icon');
-
-            if (textSpan.classList.contains('line-through')) {
-                // Desmarcar tarefa
-                textSpan.classList.remove('line-through', 'text-slate-400');
-                textSpan.classList.remove('text-slate-500'); // Para o Dia D
-                textSpan.classList.add('text-slate-600');
-                element.classList.remove('bg-emerald-50/50', 'opacity-70', 'bg-red-50/30'); // bg-red-50/30 para o Dia D
-                
-                // Restaurar ícone original guardado
-                const originalIcon = icon.getAttribute('data-original-icon');
-                
-                // Check if it's the Dia D task to restore red color
-                if (originalIcon === 'ph-power') {
-                    icon.className = `task-icon ph-fill ${originalIcon} text-red-500 text-lg mt-0.5 shrink-0 transition-colors`;
-                } else {
-                    icon.className = `task-icon ph-fill ${originalIcon} text-brand-accent text-lg mt-0.5 shrink-0 transition-colors`;
-                }
-            } else {
-                // Marcar tarefa como concluída
-                textSpan.classList.remove('text-slate-600');
-                textSpan.classList.remove('text-slate-800'); // Para o Dia D
-                textSpan.classList.add('line-through');
-                
-                // If it's Dia D, use a slightly different text color
-                if (icon.classList.contains('ph-power')) {
-                    textSpan.classList.add('text-slate-500');
-                    element.classList.add('bg-red-50/30', 'opacity-70');
-                } else {
-                    textSpan.classList.add('text-slate-400');
-                    element.classList.add('bg-emerald-50/50', 'opacity-70');
-                }
-                
-                // Guardar ícone original para restauração posterior
-                if (!icon.hasAttribute('data-original-icon')) {
-                    const phClass = Array.from(icon.classList).find(c => c.startsWith('ph-') && c !== 'ph-fill');
-                    icon.setAttribute('data-original-icon', phClass);
-                }
-                
-                // Trocar para ícone de check-circle verde
-                icon.className = `task-icon ph-fill ph-check-circle text-emerald-500 text-lg mt-0.5 shrink-0 transition-colors`;
-            }
-        }
-    </script>
 </body>
 </html>
